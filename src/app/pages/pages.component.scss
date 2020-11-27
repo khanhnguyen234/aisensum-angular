@@ -1,0 +1,13 @@
+.root {
+  display: flex;
+  height: 100vh;
+  overflow-x: hidden;
+
+  .menu {
+    width: 300px;
+  }
+
+  .main {
+    width: 100%;
+  }
+}

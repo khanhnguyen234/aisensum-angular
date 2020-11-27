@@ -1,0 +1,16 @@
+@import '~src/app/theme/styles/variables.scss';
+
+.aisensum {
+  margin: spacing(6) spacing(24);
+
+  .box {
+    margin-top: spacing(4);
+    padding: spacing(4);
+    background-color: $color-white;
+    border-radius: spacing(1);
+  }
+}
+
+.full-width {
+  width: 100%;
+}

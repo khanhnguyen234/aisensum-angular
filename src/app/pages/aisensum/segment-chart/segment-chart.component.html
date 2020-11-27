@@ -1,0 +1,24 @@
+<div>
+  <div class="head">
+    <div class="select">
+      <mat-select [(value)]="selected">
+        <mat-option *ngFor="let option of selectOptions" [value]="option.value">
+          {{ option.viewValue }}
+        </mat-option>
+      </mat-select>
+    </div>
+
+    <div class="badge">
+      {{ overview }}
+    </div>
+    <div></div>
+  </div>
+  <div>
+    <chart
+      type="line"
+      [data]="data"
+      [options]="options"
+      style="height: 350px;"
+    ></chart>
+  </div>
+</div>

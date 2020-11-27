@@ -1,0 +1,16 @@
+@import '../../styles/variables';
+
+.sidebar {
+  border-right: 1px solid $color-grey-400;
+  height: 100%;
+
+  .toggle {
+    padding: spacing(4);
+    cursor: pointer;
+  }
+
+  .icon {
+    padding: spacing(6) spacing(4);
+    cursor: pointer;
+  }
+}

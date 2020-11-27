@@ -1,0 +1,23 @@
+@import '~src/app/theme/styles/variables.scss';
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  padding: spacing(6) 0;
+
+  .select {
+    display: flex;
+    align-items: center;
+    width: 180px;
+    text-align: center;
+    background-color: $color-grey-50;
+    border-radius: spacing(1);
+  }
+
+  .badge {
+    color: $color-white;
+    padding: spacing(2) spacing(4);
+    background-color: $color-yellow-400;
+    border-radius: spacing(10);
+  }
+}

@@ -1,0 +1,16 @@
+@import '~src/app/theme/styles/variables.scss';
+
+.img {
+  width: spacing(6);
+  margin-bottom: spacing(1);
+}
+
+.des {
+  font: $font-size-body2;
+  color: $color-grey-200;
+}
+
+.statistic {
+  font: $font-size-body1;
+  font-weight: bold;
+}
