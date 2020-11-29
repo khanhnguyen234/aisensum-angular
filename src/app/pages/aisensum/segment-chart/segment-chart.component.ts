@@ -1,18 +1,25 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { SegmentChartService } from 'src/app/core/services/segment-chart.service';
 
 @Component({
   selector: 'segment-chart',
   templateUrl: './segment-chart.component.html',
   styleUrls: ['./segment-chart.component.scss'],
 })
-export class SegmentChartComponent {
-  data: {};
+export class SegmentChartComponent implements OnInit {
+  data: any;
   options: any;
   overview: string;
   selectOptions: any[];
   selected: string;
 
-  constructor() {
+  criteriaUuid: string;
+  typeUuid: string;
+
+  constructor(private segmentChartService: SegmentChartService) {
+    this.criteriaUuid = 'bc384c62-3251-11eb-adc1-0242ac120002';
+    this.typeUuid = '48da8862-3250-11eb-adc1-0242ac120002';
+
     this.overview = 'Growth: 47.1%';
     this.selected = 'Sales';
     this.selectOptions = [
@@ -24,20 +31,6 @@ export class SegmentChartComponent {
       { value: 'Spend-Transaction', viewValue: 'Spend / Transaction' },
       { value: 'Transaction-Customer', viewValue: 'Transaction / Customer' },
     ];
-
-    this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May'],
-      datasets: [
-        {
-          data: [70, 35, 45, 55, 40],
-          borderColor: 'green',
-          backgroundColor: 'green',
-          fill: false,
-          pointRadius: 8,
-          pointHoverRadius: 10,
-        },
-      ],
-    };
 
     this.options = {
       responsive: true,
@@ -73,7 +66,26 @@ export class SegmentChartComponent {
     };
   }
 
-  private random() {
-    return Math.round(Math.random() * 100);
+  ngOnInit() {
+    this.segmentChartService
+      .getSegmentChart({
+        criteriaUuid: this.criteriaUuid,
+        typeUuid: this.typeUuid,
+      })
+      .subscribe((data) => {
+        this.data = {
+          labels: data.labels,
+          datasets: [
+            {
+              data: data.dataChart,
+              borderColor: 'green',
+              backgroundColor: 'green',
+              fill: false,
+              pointRadius: 8,
+              pointHoverRadius: 10,
+            },
+          ],
+        };
+      });
   }
 }
