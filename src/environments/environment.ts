@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   api_url:
-    'https://hcta18p39c.execute-api.ap-southeast-1.amazonaws.com/Stage/v1',
+    'https://4vs51natob.execute-api.ap-southeast-1.amazonaws.com/Stage/v1',
 };
 
 /*
