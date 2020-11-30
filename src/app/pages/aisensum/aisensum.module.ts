@@ -7,7 +7,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { AisensumComponent } from './aisensum.component';
 import { SegmentChartComponent } from './segment-chart/segment-chart.component';
 import { StatisticComponent } from './statistic/statistic.component';
-import { ListObjectComponent } from './list-object/list-object.component';
+import { CriteriaComponent } from './criteria/criteria.component';
 
 const MATERIAL_MODULES = [MatButtonModule, MatSelectModule];
 
@@ -16,7 +16,7 @@ const MATERIAL_MODULES = [MatButtonModule, MatSelectModule];
     AisensumComponent,
     SegmentChartComponent,
     StatisticComponent,
-    ListObjectComponent,
+    CriteriaComponent,
   ],
   imports: [CommonModule, ChartModule, ...MATERIAL_MODULES],
 })

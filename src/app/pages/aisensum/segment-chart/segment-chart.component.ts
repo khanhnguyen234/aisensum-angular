@@ -1,77 +1,54 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { SegmentChartService } from 'src/app/core/services/segment-chart.service';
+import { CHART_OPTIONS } from './const';
 
 @Component({
   selector: 'segment-chart',
   templateUrl: './segment-chart.component.html',
   styleUrls: ['./segment-chart.component.scss'],
 })
-export class SegmentChartComponent implements OnInit {
+export class SegmentChartComponent {
   data: any;
   options: any;
   overview: string;
-  selectOptions: any[];
-  selected: string;
+  selectOptions: any;
 
-  criteriaUuid: string;
-  typeUuid: string;
+  criteriaUuid: string | any;
+  typeUuid: string | any;
 
   constructor(private segmentChartService: SegmentChartService) {
-    this.criteriaUuid = 'bc384c62-3251-11eb-adc1-0242ac120002';
-    this.typeUuid = '48da8862-3250-11eb-adc1-0242ac120002';
-
     this.overview = 'Growth: 47.1%';
-    this.selected = 'Sales';
-    this.selectOptions = [
-      { value: 'Sales', viewValue: 'Sales' },
-      { value: 'Quantity', viewValue: 'Quantity' },
-      { value: 'No-of-Customer', viewValue: 'No of Customer' },
-      { value: 'Transactions', viewValue: 'Transactions' },
-      { value: 'Spend-Customer', viewValue: 'Spend / Customer' },
-      { value: 'Spend-Transaction', viewValue: 'Spend / Transaction' },
-      { value: 'Transaction-Customer', viewValue: 'Transaction / Customer' },
-    ];
+    this.options = CHART_OPTIONS;
 
-    this.options = {
-      responsive: true,
-      maintainAspectRatio: false,
-      legend: {
-        display: false,
+    this.segmentChartService.getSegmentType().subscribe(
+      (data) => {
+        this.selectOptions = data;
+        this.typeUuid = !!data.length && data[0].uuid;
       },
-      hover: {
-        mode: 'index',
+      (error) => {
+        console.log('Error getSegmentType', error);
       },
-      scales: {
-        xAxes: [
-          {
-            display: true,
-            gridLines: {
-              display: false,
-            },
-          },
-        ],
-        yAxes: [
-          {
-            display: true,
-            gridLines: {
-              display: true,
-            },
-            ticks: {
-              min: 0,
-              max: 100,
-            },
-          },
-        ],
+      () => {
+        this.fetchChart(this.criteriaUuid, this.typeUuid);
       },
-    };
+    );
+
+    this.segmentChartService.changeCriteriaUuid$.subscribe((uuid) => {
+      this.criteriaUuid = uuid;
+      this.fetchChart(uuid, this.typeUuid);
+    });
   }
 
-  ngOnInit() {
+  onChangeType(event: any): any {
+    const typeUuid = event.value;
+    this.typeUuid = typeUuid;
+    this.fetchChart(this.criteriaUuid, typeUuid);
+  }
+
+  fetchChart(criteriaUuid: string, typeUuid: string): void {
+    if (!criteriaUuid || !typeUuid) return;
     this.segmentChartService
-      .getSegmentChart({
-        criteriaUuid: this.criteriaUuid,
-        typeUuid: this.typeUuid,
-      })
+      .getSegmentChart({ criteriaUuid, typeUuid })
       .subscribe((data) => {
         this.data = {
           labels: data.labels,
