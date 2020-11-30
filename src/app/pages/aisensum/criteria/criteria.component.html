@@ -1,7 +1,9 @@
 <div class="list-object">
   <div
     *ngFor="let item of items"
-    [className]="criteriaUuid === item.uuid ? 'object-card active' : 'object-card'"
+    [className]="
+      criteriaUuid === item.uuid ? 'object-card active' : 'object-card'
+    "
     (click)="changeCriteriaUuid(item.uuid)"
   >
     {{ item.name }}

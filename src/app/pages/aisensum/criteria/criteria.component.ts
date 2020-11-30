@@ -11,13 +11,11 @@ export class CriteriaComponent {
   criteriaUuid: string | any;
 
   constructor(private segmentChartService: SegmentChartService) {
-    this.segmentChartService
-      .getSegmentCriteria()
-      .subscribe((data) => {
-        this.items = data;
-        this.criteriaUuid = !!data.length && data[0].uuid;
-        this.segmentChartService.onChangeCriteriaUuid(this.criteriaUuid);
-      });
+    this.segmentChartService.getSegmentCriteria().subscribe((data) => {
+      this.items = data;
+      this.criteriaUuid = !!data.length && data[0].uuid;
+      this.segmentChartService.onChangeCriteriaUuid(this.criteriaUuid);
+    });
   }
 
   changeCriteriaUuid(criteriaUuid: string): void {

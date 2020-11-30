@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
 
 import { ApiService } from 'src/app/core/services/api.service';
-import { SegmentChart, SegmentCriteria, SegmentType } from '../interfaces/segment-chart';
+import {
+  SegmentChart,
+  SegmentCriteria,
+  SegmentType,
+} from '../interfaces/segment-chart';
 import { map } from 'rxjs/operators';
 
 @Injectable()
@@ -16,7 +20,6 @@ export class SegmentChartService {
   onChangeCriteriaUuid(mission: string): any {
     this.changeCriteriaUuidSource.next(mission);
   }
-
 
   getSegmentChart(query: any): Observable<SegmentChart> {
     return this.apiService.get(`/segment-chart`, query).pipe(

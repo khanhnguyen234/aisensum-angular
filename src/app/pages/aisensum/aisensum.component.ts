@@ -6,9 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./aisensum.component.scss'],
 })
 export class AisensumComponent implements OnInit {
-
-  constructor() {
-  }
+  constructor() {}
 
   ngOnInit(): void {}
 }

@@ -8,9 +8,8 @@ describe('AisensumComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AisensumComponent ]
-    })
-    .compileComponents();
+      declarations: [AisensumComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
