@@ -8,7 +8,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "deploy": "dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME% --acl public-read"
+    "deploy": "dotenv cross-var aws s3 sync dist s3://%S3_BUCKET_NAME% --acl public-read",
+    "aws": "aws cloudformation package --template-file .yaml/cloudformation.yaml --output-template-file cloudformation-web-output.yaml --s3-bucket demo-dev-khanh && aws s3 cp cloudformation-web-output.yaml s3://demo-dev-khanh/cloudformation-web-output.yaml && aws cloudformation deploy --template-file cloudformation-web-output.yaml --stack-name aisensum-dev-web --s3-bucket demo-dev-khanh --capabilities CAPABILITY_IAM CAPABILITY_AUTO_EXPAND"
   },
   "private": true,
   "dependencies": {
