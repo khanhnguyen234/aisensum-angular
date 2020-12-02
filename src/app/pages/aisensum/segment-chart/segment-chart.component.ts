@@ -16,9 +16,13 @@ export class SegmentChartComponent {
   criteriaUuid: string | any;
   typeUuid: string | any;
 
+  loading: boolean;
+
   constructor(private segmentChartService: SegmentChartService) {
     this.overview = 'Growth: 47.1%';
     this.options = CHART_OPTIONS;
+
+    this.loading = !this.typeUuid && !this.criteriaUuid;
 
     this.segmentChartService.getSegmentType().subscribe(
       (data) => {
@@ -47,9 +51,12 @@ export class SegmentChartComponent {
 
   fetchChart(criteriaUuid: string, typeUuid: string): void {
     if (!criteriaUuid || !typeUuid) return;
+
+    this.loading = true;
     this.segmentChartService
       .getSegmentChart({ criteriaUuid, typeUuid })
       .subscribe((data) => {
+        this.loading = false;
         this.data = {
           labels: data.labels,
           datasets: [
