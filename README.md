@@ -1,27 +1,36 @@
-# AisensumAngular
+> ### Angular codebase containing ChartJs examples that adheres to the [Aisensum AWS NodeJS](https://github.com/khanhnguyen234/aisensum-aws-nodejs) API.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.0.2.
+### [Demo](https://d19culiq2w7sb5.cloudfront.net)
 
-## Development server
+# Getting started
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Prerequisite
 
-## Code scaffolding
+* Install Node.js, AWS CLI, Angular CLI
+* In `aisensum-angular`, run `npm install`
+* Run `cp .env.example .env`, edit `.env`
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Develop
 
-## Build
+* Run `npm run start`
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Build and deploy
 
-## Running unit tests
+In the root directory of this project:
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+* `npm run build`
+* `npm run aws`
+* `npm run deploy`
 
-## Running end-to-end tests
+# How it works
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+## Deployment
 
-## Further help
+Run `npm run aws` to create resource AWS:
+- [AWS S3](https://aws.amazon.com/s3) can host a static website on Amazon S3.
+- [AWS CloudFront](https://aws.amazon.com/cloudfront) can speed up the delivery of website.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+Run `npm run build` to build the project. The build artifacts will be stored in the `dist/` directory.
+
+Run `npm run deploy` to synchronizes all files in the `dist/` directory to AWS S3 bucket.
+
